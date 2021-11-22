@@ -3,7 +3,12 @@
 This Swift Package packs all of the standard UIColor constants into a Color extension to use in SwiftUI. It also adds an initializer for HEX Colors.
 
 ## Usage
-Just use as you would with the built in color properties:
+First, import the Package Module:
+```swift
+import LPColorUI
+```
+
+Then use as you would with the built in color properties:
 
 ```swift
 Text("Hello, World!")
@@ -19,4 +24,6 @@ Text("Hello, World!")
 
 ## Install Guide
 Add to your Project Packages:
-
+```
+https://github.com/lukepistrol/LPColorUI.git
+```
