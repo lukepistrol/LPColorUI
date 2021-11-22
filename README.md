@@ -6,15 +6,15 @@ This Swift Package packs all of the standard UIColor constants into a Color exte
 Just use as you would with the built in color properties:
 
 ```swift
-	Text("Hello, World!")
-		.foregroundColor(.darkText)
+Text("Hello, World!")
+	.foregroundColor(.darkText)
 ```
 
 To use the Hex init:
 
 ```swift
-	Text("Hello, World!")
-		.foregroundColor(.init(hex: "FAFAFA"))
+Text("Hello, World!")
+	.foregroundColor(.init(hex: "FAFAFA"))
 ```
 
 ## Install Guide
