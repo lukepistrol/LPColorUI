@@ -22,14 +22,14 @@ Text("Hello, World!")
 	.foregroundColor(.darkText)
 ```
 
-To use the Hex init:
+To use the Hex Initializer:
 
 ```swift
 Text("Hello, World!")
 	.foregroundColor(.init(hex: "FAFAFA"))
 ```
 
-## Install Guide
+## Installation
 Add to your Project Packages:
 ```
 https://github.com/lukepistrol/LPColorUI.git
