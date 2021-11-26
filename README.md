@@ -1,7 +1,7 @@
 # LPColorUI
 <p>
     <img src="https://img.shields.io/badge/Swift-5.5.1-ff69b4.svg" />
-    <img src="https://img.shields.io/badge/iOS-13+-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/iOS-14+-brightgreen.svg" />
     <a href="https://twitter.com/lukeeep_">
         <img src="https://img.shields.io/badge/Contact-@lukeeep_-lightgrey.svg?style=flat" alt="Twitter: @lukeeep_" />
     </a>
