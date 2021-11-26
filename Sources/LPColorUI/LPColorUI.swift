@@ -1,10 +1,10 @@
 import SwiftUI
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 /// Adapts Default Color Styles from UIKit's 'UIColor' to SwiftUI's 'Color'
 public struct LPColorUI {}
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 public extension Color {
 	
 	// MARK: - Initializers
@@ -15,6 +15,10 @@ public extension Color {
 	/// Note: When using the 32 Bit String, the first two Characters describe the Alpha Channel
 	init(hex: String) {
 		let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+		if (hex.map { $0.hexDigitValue }).contains(nil) {
+			self.init(white: 0)
+			return
+		}
 		var int: UInt64 = 0
 		Scanner(string: hex).scanHexInt64(&int)
 		let a, r, g, b: UInt64
@@ -26,7 +30,7 @@ public extension Color {
 		case 8: // ARGB (32-bit)
 			(a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
 		default:
-			(a, r, g, b) = (1, 128, 128, 128)
+			(a, r, g, b) = (255, 0, 0, 0)
 		}
 		
 		self.init(.sRGB,
@@ -35,6 +39,49 @@ public extension Color {
 				  blue: Double(b) / 255,
 				  opacity: Double(a) / 255
 		)
+	}
+	
+	// MARK: - Components
+	
+	/// Returns the RGB components of the Color (red, green, blue, opacity) [0,1]
+	var components: (red: Double, green: Double, blue: Double, opacity: Double) {
+
+		var r: CGFloat = 0
+		var g: CGFloat = 0
+		var b: CGFloat = 0
+		var o: CGFloat = 0
+		
+		guard UIColor(self) .getRed(&r, green: &g, blue: &b, alpha: &o) else {
+			return (0, 0, 0, 0)
+		}
+		return (r.roundSignificant(), g.roundSignificant(), b.roundSignificant(), o.roundSignificant())
+	}
+	
+	/// Returns the HSB components of the Color (hue, saturation, brightness, opacity) [0,1]
+	var hsb: (hue: Double, saturation: Double, brightness: Double, opacity: Double) {
+		
+		var h: CGFloat = 0
+		var s: CGFloat = 0
+		var b: CGFloat = 0
+		var o: CGFloat = 0
+		
+		guard UIColor(self).getHue(&h, saturation: &s, brightness: &b, alpha: &o) else {
+			return (0, 0, 0, 0)
+		}
+		
+		return (h.roundSignificant(), s.roundSignificant(), b.roundSignificant(), o.roundSignificant())
+	}
+	
+	// MARK: - CONVERSIONS
+	
+	/// Returns the corresponding UIColor
+	var uiColor: UIColor {
+		UIColor(self)
+	}
+	
+	/// Returns the corresponding CIColor
+	var ciColor: CIColor {
+		UIColor(self).ciColor
 	}
 	
 	// MARK: - Standard & UI Element Colors
@@ -162,6 +209,11 @@ public extension Color {
 	static var lightGray: Color {
 		Color(UIColor.lightGray)
 	}
+	
+	/// Gray Color (grayscale 1/2)
+	static var grayColor: Color {
+		Color(UIColor.gray)
+	}
 
 	// MARK: Separator Colors
 	
@@ -174,6 +226,75 @@ public extension Color {
 	static var opaqueSeparator: Color {
 		Color(UIColor.opaqueSeparator)
 	}
+	
+	// MARK: - Non-Adaptive (fixed) Colors
+	
+	/// Fixed (non-adaptive) color for blue.
+	///
+	/// Equivalent to UIColor.blue
+	static var blueColor: Color {
+		Color(UIColor.blue)
+	}
 
+	/// Fixed (non-adaptive) color for brown.
+	///
+	/// Equivalent to UIColor.brown
+	static var brownColor: Color {
+		Color(UIColor.brown)
+	}
+	
+	/// Fixed (non-adaptive) color for cyan.
+	///
+	/// Equivalent to UIColor.cyan
+	static var cyanColor: Color {
+		Color(UIColor.cyan)
+	}
+	
+	/// Fixed (non-adaptive) color for green.
+	///
+	/// Equivalent to UIColor.green
+	static var greenColor: Color {
+		Color(UIColor.green)
+	}
+	
+	/// Fixed (non-adaptive) color for magenta.
+	///
+	/// Equivalent to UIColor.magenta
+	static var magentaColor: Color {
+		Color(UIColor.magenta)
+	}
+	
+	/// Fixed (non-adaptive) color for orange.
+	///
+	/// Equivalent to UIColor.orange
+	static var orangeColor: Color {
+		Color(UIColor.orange)
+	}
 
+	/// Fixed (non-adaptive) color for purple.
+	///
+	/// Equivalent to UIColor.purple
+	static var purpleColor: Color {
+		Color(UIColor.purple)
+	}
+	
+	/// Fixed (non-adaptive) color for red.
+	///
+	/// Equivalent to UIColor.red
+	static var redColor: Color {
+		Color(UIColor.red)
+	}
+	
+	/// Fixed (non-adaptive) color for yellow.
+	///
+	/// Equivalent to UIColor.yellow
+	static var yellowColor: Color {
+		Color(UIColor.yellow)
+	}
+}
+
+fileprivate extension CGFloat {
+	func roundSignificant()->CGFloat {
+		((self*1000).rounded())/1000
+	}
 }
