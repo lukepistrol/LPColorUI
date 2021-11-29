@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "LPColorUI",
+	platforms: [
+		.iOS(.v14),
+		.macOS(.v11),
+		.tvOS(.v14),
+		.watchOS(.v8),
+	],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -24,5 +30,6 @@ let package = Package(
         .testTarget(
             name: "LPColorUITests",
             dependencies: ["LPColorUI"]),
-    ]
+    ],
+	swiftLanguageVersions: [.v5]
 )
