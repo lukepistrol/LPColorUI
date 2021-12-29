@@ -76,6 +76,12 @@ public extension Color {
 		let components = self.components
 		return 0.2126 * components.red + 0.7152 * components.green + 0.0722 * components.blue
 	}
+	
+	var hexString: String {
+		let components = self.components
+		let rgb:Int = (Int)(components.red*255)<<16 | (Int)(components.green*255)<<8 | (Int)(components.blue*255)<<0
+		return NSString(format:"%06x", rgb).uppercased as String
+	}
 }
 
 fileprivate extension CGFloat {

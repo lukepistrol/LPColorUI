@@ -160,3 +160,13 @@ class ContrastTests: XCTestCase {
 		XCTAssertEqual(contrast, true)
 	}
 }
+
+@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
+class HexConversionTests: XCTestCase {
+	func testHexConversion1() {
+		let colorString = "FF00FF"
+		let color1 = Color(hex: colorString)
+		let colorString2 = color1.hexString
+		XCTAssertEqual(colorString, colorString2)
+	}
+}
