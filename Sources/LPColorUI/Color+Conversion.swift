@@ -11,6 +11,16 @@ import SwiftUI
 public extension Color {
 	// MARK: - Conversions
 	
+	#if os(macOS)
+	var nsColor: NSColor {
+		NSColor(self)
+	}
+	
+	var ciColor: CIColor {
+		CIColor(cgColor: NSColor(self).cgColor)
+	}
+	#endif
+	
 	#if !os(macOS)
 	/// Returns the corresponding UIColor
 	var uiColor: UIColor {
