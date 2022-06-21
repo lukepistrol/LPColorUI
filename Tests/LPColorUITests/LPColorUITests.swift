@@ -2,7 +2,6 @@ import XCTest
 import SwiftUI
 @testable import LPColorUI
 
-@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
 class HexColorTests: XCTestCase {
 	func testHexColors12bit() throws {
 		let color1 = Color(hex: "#FFF")
@@ -31,7 +30,6 @@ class HexColorTests: XCTestCase {
 	}
 }
 
-@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
 class ColorComponentsTests: XCTestCase {
 	func testRed() {
 		let color = UIColor.red
@@ -76,7 +74,6 @@ class ColorComponentsTests: XCTestCase {
 	}
 }
 
-@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
 class HSBComponentsTests: XCTestCase {
 	func testHue() {
 		let color = UIColor.cyan
@@ -109,7 +106,6 @@ class HSBComponentsTests: XCTestCase {
 	}
 }
 
-@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
 class BrightnessTests: XCTestCase {
 	func testIsBrightColor() {
 		let color = Color.white
@@ -137,7 +133,6 @@ class BrightnessTests: XCTestCase {
 	}
 }
 
-@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
 class ContrastTests: XCTestCase {
 	func testHasContrast() {
 		let color1 = Color.black
@@ -161,7 +156,6 @@ class ContrastTests: XCTestCase {
 	}
 }
 
-@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
 class HexConversionTests: XCTestCase {
 	func testHexConversion1() {
 		let colorString = "FF00FF"

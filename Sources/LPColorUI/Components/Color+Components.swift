@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Color+Components.swift
 //  
 //
 //  Created by Lukas Pistrol on 26.11.21.
@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 14.0, tvOS 14.0, watchOS 8.0, macOS 11.0, *)
 public extension Color {
 	
 	// MARK: - Components
@@ -41,34 +40,6 @@ public extension Color {
 		
 		return (h.roundSignificant(), s.roundSignificant(), b.roundSignificant(), a.roundSignificant())
 	}
-	#else
-	
-	var components: (red: Double, green: Double, blue: Double, alpha: Double) {
-	
-		var r: CGFloat = 0
-		var g: CGFloat = 0
-		var b: CGFloat = 0
-		var a: CGFloat = 0
-		
-		let nscolor = NSColor(self).usingColorSpace(.deviceRGB)
-		nscolor!.getRed(&r, green: &g, blue: &b, alpha: &a)
-		
-		return (r.roundSignificant(), g.roundSignificant(), b.roundSignificant(), a.roundSignificant())
-	}
-	
-	var hsb: (hue: Double, saturation: Double, brightness: Double, alpha: Double) {
-		
-		var h: CGFloat = 0
-		var s: CGFloat = 0
-		var b: CGFloat = 0
-		var a: CGFloat = 0
-		
-		let nscolor = NSColor(self).usingColorSpace(.deviceRGB)
-		nscolor!.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-		
-		return (h.roundSignificant(), s.roundSignificant(), b.roundSignificant(), a.roundSignificant())
-	}
-	
 	#endif
 	
 	/// Returns the weighted luminance value of the Color [0,1]
@@ -84,7 +55,7 @@ public extension Color {
 	}
 }
 
-fileprivate extension CGFloat {
+internal extension CGFloat {
 	func roundSignificant()->CGFloat {
 		((self*1000).rounded())/1000
 	}
